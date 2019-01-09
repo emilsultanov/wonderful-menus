@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body,
+        html {
+            background-color: black;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: black;    
+        }
+
+        .header .navbar {
+            display: flex;
+            position: relative;
+        }
+
+        .header .navbar .magic-line {
+            height: 1px;
+            background-color: white;
+            left: 0;
+            bottom: 0;
+            position: absolute;
+            transition: all 0.4s;
+        }
+
+        .header .navbar .magic-line::after {
+            content: '';
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: darkgray;
+            opacity: 0.3;
+        }
+
+        .nav-item {
+            color: white;
+            display: block;
+            padding: 0.7rem 1.2rem;
+            text-decoration: none;
+        }
+    </style>
+    <header class="header">
+        <nav class="navbar">
+            <a class="nav-item" href="#">Home</a>
+            <a class="nav-item" href="#">News</a>
+            <a class="nav-item is-active" href="#">About</a>
+            <a class="nav-item" href="#">Schedule</a>
+            <a class="nav-item" href="#">Contact</a>
+            <span class="magic-line"></span>
+        </nav>
+    </header>
+</head>
+
+<body>
+    <script>
+
+        var menus = document.querySelectorAll(".navbar .nav-item");
+        var line = document.getElementsByClassName("magic-line")[0];
+        menus.forEach(menu => {
+            var width = menu.offsetWidth;
+
+            menu.addEventListener("mouseenter", function () {
+                console.log(this.offsetLeft);
+                line.style.width = this.offsetWidth + "px";
+                line.style.transform = `translateX(${this.offsetLeft}px)`;
+            })
+        });
+
+    </script>
